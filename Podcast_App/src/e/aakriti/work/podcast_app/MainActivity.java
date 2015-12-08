@@ -460,7 +460,7 @@ public class MainActivity extends AppCompatActivity {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 					// TODO Auto-generated method stub
-					Toast.makeText(context, allCategories.get(position).getFull_name(), Toast.LENGTH_LONG).show();
+					Toast.makeText(context, allCategories.get(position).getFull_name()+" .", Toast.LENGTH_LONG).show();
 				}
 			});
 			return view;
