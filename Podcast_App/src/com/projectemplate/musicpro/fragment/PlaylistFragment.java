@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.projectemplate.musicpro.BaseFragment;
-import com.projectemplate.musicpro.activity.MainActivity;
+import com.projectemplate.musicpro.activity.SongListActivity;
 import com.projectemplate.musicpro.adapter.PlaylistAdapter;
 import com.projectemplate.musicpro.config.GlobalValue;
 import com.projectemplate.musicpro.config.WebserviceConfig;
@@ -44,8 +44,8 @@ public class PlaylistFragment extends BaseFragment {
 			Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_playlist, container,
 				false);
-		initUIBase(view);
-		setButtonMenu(view);
+//		initUIBase(view);
+//		setButtonMenu(view);
 		return view;
 	}
 
@@ -84,7 +84,7 @@ public class PlaylistFragment extends BaseFragment {
 			public void onItemClick(AdapterView<?> av, View v, int position,
 					long l) {
 				getMainActivity().currentPlaylist = listPlaylists.get(position);
-				getMainActivity().gotoFragment(MainActivity.LIST_SONG_FRAGMENT);
+				getMainActivity().gotoFragment(SongListActivity.LIST_SONG_FRAGMENT);
 			}
 		});
 	}

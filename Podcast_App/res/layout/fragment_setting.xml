@@ -5,7 +5,6 @@
     android:background="@android:color/white"
     tools:context=".fragment.SettingsFragment" >
 
-    <include layout="@layout/layout_header" />
 
     <com.projectemplate.musicpro.widget.AutoBgLinearLayout
         android:id="@+id/layoutLanguage"

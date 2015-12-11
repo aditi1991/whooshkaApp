@@ -24,8 +24,8 @@ public class SettingsFragment extends BaseFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_setting, container, false);
-		initUIBase(view);
-		setButtonMenu(view);
+//		initUIBase(view);
+//		setButtonMenu(view);
 		return view;
 	}
 

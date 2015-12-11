@@ -1,9 +1,9 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    style="@style/Layout.FillWidthHeight"
-    tools:context=".activity.MainActivity" >
-
-    <fragment
+    style="@style/Layout.FillWidthHeight" >
+    
+  
+     <fragment
         android:id="@+id/fragmentListSongs"
         android:name="com.projectemplate.musicpro.fragment.ListSongsFragment"
         style="@style/Layout.FillWidthHeight" />
@@ -36,7 +36,7 @@
     <fragment
         android:id="@+id/fragmentPlayer"
         android:name="com.projectemplate.musicpro.fragment.PlayerFragment"
-        style="@style/Layout.FillWidthHeight" />
+        style="@style/Layout.FillWidthHeight" /> 
 
     <LinearLayout
         android:id="@+id/llBottom"
@@ -108,7 +108,7 @@
             android:layout_height="50dp"
             android:layout_alignParentBottom="true"
             android:background="@android:color/white"
-            android:orientation="vertical" />
+            android:orientation="vertical" />
         -->
     </LinearLayout>
 

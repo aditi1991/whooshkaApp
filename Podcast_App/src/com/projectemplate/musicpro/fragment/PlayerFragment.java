@@ -3,7 +3,7 @@ package com.projectemplate.musicpro.fragment;
 import java.io.File;
 
 import com.projectemplate.musicpro.BaseFragment;
-import com.projectemplate.musicpro.activity.MainActivity;
+import com.projectemplate.musicpro.activity.SongListActivity;
 import com.projectemplate.musicpro.config.GlobalValue;
 import com.projectemplate.musicpro.slidingmenu.SlidingMenu;
 import com.projectemplate.musicpro.widget.AutoBgButton;
@@ -59,8 +59,8 @@ public class PlayerFragment extends BaseFragment implements OnClickListener {
 		if (!hidden) {
 			getMainActivity().menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_NONE);
 			switch (getMainActivity().toMusicPlayer) {
-			case MainActivity.FROM_LIST_SONG:
-			case MainActivity.FROM_SEARCH:
+			case SongListActivity.FROM_LIST_SONG:
+			case SongListActivity.FROM_SEARCH:
 				if ( GlobalValue.listSongPlay != null) {
 				getMainActivity().mService.setListSongs(GlobalValue.listSongPlay);}
 				setCurrentSong(GlobalValue.currentSongPlay);
@@ -71,7 +71,7 @@ public class PlayerFragment extends BaseFragment implements OnClickListener {
 				getMainActivity().setButtonPlay();
 				break;
 
-			case MainActivity.FROM_NOTICATION:
+			case SongListActivity.FROM_NOTICATION:
 				try {
 					playerListPlayingFragment.refreshListPlaying();
 					playerThumbFragment.refreshData();
@@ -80,7 +80,7 @@ public class PlayerFragment extends BaseFragment implements OnClickListener {
 				}
 				break;
 
-			case MainActivity.FROM_OTHER:
+			case SongListActivity.FROM_OTHER:
 				break;
 			}
 		}

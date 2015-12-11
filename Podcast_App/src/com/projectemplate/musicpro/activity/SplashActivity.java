@@ -67,7 +67,7 @@ public class SplashActivity extends FragmentActivity {
 		new Handler().postDelayed(new Runnable() {
 			@Override
 			public void run() {
-				startActivity(new Intent(getBaseContext(), MainActivity.class));
+				startActivity(new Intent(getBaseContext(), SongListActivity.class));
 				overridePendingTransition(R.anim.slide_in_left,
 						R.anim.slide_out_left);
 				finish();

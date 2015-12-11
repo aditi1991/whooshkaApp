@@ -50,11 +50,11 @@ public class SongAdapter extends BaseAdapter {
 			lblArtist.setText(item.getArtist());
 		}
 
-		if (position % 2 == 0) {
-			layoutSong.setBackgroundResource(R.drawable.bg_item_song);
-		} else {
-			layoutSong.setBackgroundColor(Color.TRANSPARENT);
-		}
+//		if (position % 2 == 0) {
+//			layoutSong.setBackgroundResource(R.drawable.bg_item_song);
+//		} else {
+//			layoutSong.setBackgroundColor(Color.TRANSPARENT);
+//		}
 		return convertView;
 	}
 }

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     style="@style/Layout.FillWidthHeight.Vertical"
-    android:background="@drawable/bg_app" >
+    android:background="@drawable/bg_music_player" >
 
-    <include layout="@layout/layout_header" />
+    
 
     <com.projectemplate.musicpro.widget.pulltorefresh.PullToRefreshListView
         xmlns:ptr="http://schemas.android.com/apk/res-auto"

@@ -4,7 +4,6 @@
     style="@style/Layout.FillWidthHeight.Vertical"
     tools:context=".fragment.SearchFragment" >
 
-    <include layout="@layout/layout_header" />
 
     <LinearLayout
         style="@style/Layout.FillWidth"

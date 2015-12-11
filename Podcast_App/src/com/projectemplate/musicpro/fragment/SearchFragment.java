@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.projectemplate.musicpro.BaseFragment;
-import com.projectemplate.musicpro.activity.MainActivity;
+import com.projectemplate.musicpro.activity.SongListActivity;
 import com.projectemplate.musicpro.adapter.SongAdapter;
 import com.projectemplate.musicpro.config.GlobalValue;
 import com.projectemplate.musicpro.config.WebserviceConfig;
@@ -59,7 +59,7 @@ public class SearchFragment extends BaseFragment {
 	}
 
 	private void initControl(View view) {
-		setButtonMenu(view);
+//		setButtonMenu(view);
 		btnSearch.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -78,7 +78,7 @@ public class SearchFragment extends BaseFragment {
 			}
 		});
 
-		setHeaderTitle(R.string.search);
+//		setHeaderTitle(R.string.search);
 		listResult = new ArrayList<Song>();
 		if (listResult!=null&&listResult.size()>0) {
 			
@@ -92,8 +92,8 @@ public class SearchFragment extends BaseFragment {
 				if ( GlobalValue.listSongPlay != null ) {
 				GlobalValue.listSongPlay.clear();}
 				GlobalValue.listSongPlay.addAll(listResult);
-				getMainActivity().toMusicPlayer = MainActivity.FROM_SEARCH;
-				getMainActivity().gotoFragment(MainActivity.PLAYER_FRAGMENT);
+				getMainActivity().toMusicPlayer = SongListActivity.FROM_SEARCH;
+				getMainActivity().gotoFragment(SongListActivity.PLAYER_FRAGMENT);
 			}
 		});
 	}

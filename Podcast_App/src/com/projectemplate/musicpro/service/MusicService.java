@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-import com.projectemplate.musicpro.activity.MainActivity;
+import com.projectemplate.musicpro.activity.SongListActivity;
 import com.projectemplate.musicpro.config.GlobalValue;
 import com.projectemplate.musicpro.object.Song;
 import com.projectemplate.musicpro.util.Logger;
@@ -380,7 +380,7 @@ public class MusicService extends Service {
 	private void sendNotification() {
 		Song song = listSongs.get(GlobalValue.currentSongPlay);
 		NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-		Intent intent = new Intent(this, MainActivity.class);
+		Intent intent = new Intent(this, SongListActivity.class);
 		intent.putExtra("notification", true);
 		PendingIntent contentIntent = PendingIntent.getActivity(this, 0,
 				intent, 0);
@@ -391,13 +391,13 @@ public class MusicService extends Service {
 				.setContentText(song.getArtist()).setOngoing(true)
 				.setContentIntent(contentIntent);
 		mBuilder.setOngoing(false);
-		mNotificationManager.notify(MainActivity.NOTIFICATION_ID,
+		mNotificationManager.notify(SongListActivity.NOTIFICATION_ID,
 				mBuilder.build());
 	}
 
 	private void cancelNotification() {
 		NotificationManager nMgr = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-		nMgr.cancel(MainActivity.NOTIFICATION_ID);
+		nMgr.cancel(SongListActivity.NOTIFICATION_ID);
 	}
 
 	@Override

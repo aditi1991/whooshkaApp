@@ -21,17 +21,17 @@ public class AboutFragment extends BaseFragment {
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_about, container, false);
 		initUIBase(view);
-		setButtonMenu(view);
+//		setButtonMenu(view);
 		return view;
 	}
 
 	@Override
 	public void onHiddenChanged(boolean hidden) {
 		super.onHiddenChanged(hidden);
-		if (!hidden) {
-			getMainActivity().menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-			getMainActivity().setVisibilityFooter();
-		}
+//		if (!hidden) {
+//			getMainActivity().menu.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+//			getMainActivity().setVisibilityFooter();
+//		}
 	}
 
 	@Override

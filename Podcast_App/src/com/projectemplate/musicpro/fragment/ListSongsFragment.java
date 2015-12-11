@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.projectemplate.musicpro.BaseFragment;
-import com.projectemplate.musicpro.activity.MainActivity;
+import com.projectemplate.musicpro.activity.SongListActivity;
 import com.projectemplate.musicpro.adapter.SongAdapter;
 import com.projectemplate.musicpro.config.GlobalValue;
 import com.projectemplate.musicpro.config.WebserviceConfig;
@@ -50,9 +50,9 @@ public class ListSongsFragment extends BaseFragment {
 	public void onHiddenChanged(boolean hidden) {
 		super.onHiddenChanged(hidden);
 		if (!hidden) {
-			getMainActivity().menu
-					.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
-			getMainActivity().setVisibilityFooter();
+//			getMainActivity().menu
+//					.setTouchModeAbove(SlidingMenu.TOUCHMODE_FULLSCREEN);
+//			getMainActivity().setVisibilityFooter();
 			initData();
 		}
 	}
@@ -65,7 +65,7 @@ public class ListSongsFragment extends BaseFragment {
 	}
 
 	private void initControl(View view) {
-		setButtonMenu(view);
+//		setButtonMenu(view);
 		listSongs = new ArrayList<Song>();
 		songAdapter = new SongAdapter(getActivity(), listSongs);
 		// lsvSong.setAdapter(songAdapter);
@@ -90,12 +90,12 @@ public class ListSongsFragment extends BaseFragment {
 					long l) {
 				Logger.e("currentFragment: "
 						+ getMainActivity().currentFragment);
-				getMainActivity().toMusicPlayer = MainActivity.FROM_LIST_SONG;
+				getMainActivity().toMusicPlayer = SongListActivity.FROM_LIST_SONG;
 				GlobalValue.currentSongPlay = (int) l;
 				if ( GlobalValue.listSongPlay != null ) {
 				GlobalValue.listSongPlay.clear();
 				GlobalValue.listSongPlay.addAll(listSongs);}
-				getMainActivity().gotoFragment(MainActivity.PLAYER_FRAGMENT);
+				getMainActivity().gotoFragment(SongListActivity.PLAYER_FRAGMENT);
 			}
 		});
 
@@ -128,15 +128,15 @@ public class ListSongsFragment extends BaseFragment {
 
 	private void getData(boolean isRefresh) {
 		switch (GlobalValue.currentMenu) {
-		case MainActivity.TOP_CHART:
+		case SongListActivity.TOP_CHART:
 			getTopWeekMusic(isRefresh);
 			break;
 
-		case MainActivity.NOMINATIONS:
+		case SongListActivity.NOMINATIONS:
 			getNominationMusic(isRefresh);
 			break;
 
-		case MainActivity.CATEGORY_MUSIC:
+		case SongListActivity.CATEGORY_MUSIC:
 			getListMusicWithType(isRefresh);
 			break;
 		}
@@ -270,10 +270,10 @@ public class ListSongsFragment extends BaseFragment {
 	}
 
 	private void initData() {
-		getMainActivity().currentFragment = MainActivity.LIST_SONG_FRAGMENT;
+		getMainActivity().currentFragment = SongListActivity.LIST_SONG_FRAGMENT;
 		switch (GlobalValue.currentMenu) {
-		case MainActivity.TOP_CHART:
-			setHeaderTitle(R.string.topChart);
+		case SongListActivity.TOP_CHART:
+//			setHeaderTitle(R.string.topChart);
 			if (getMainActivity().listTopWeek.size() == 0) {
 				getData(true);
 			} else {
@@ -281,11 +281,11 @@ public class ListSongsFragment extends BaseFragment {
 				listSongs.addAll(getMainActivity().listTopWeek);
 				songAdapter.notifyDataSetChanged();
 			}
-			setButtonMenu(view);
+//			setButtonMenu(view);
 			break;
 
-		case MainActivity.NOMINATIONS:
-			setHeaderTitle(R.string.nominations);
+		case SongListActivity.NOMINATIONS:
+//			setHeaderTitle(R.string.nominations);
 			if (getMainActivity().listNominations.size() == 0) {
 				getData(true);
 			} else {
@@ -293,13 +293,13 @@ public class ListSongsFragment extends BaseFragment {
 				listSongs.addAll(getMainActivity().listNominations);
 				songAdapter.notifyDataSetChanged();
 			}
-			setButtonMenu(view);
+//			setButtonMenu(view);
 			break;
 
-		case MainActivity.CATEGORY_MUSIC:
+		case SongListActivity.CATEGORY_MUSIC:
 			CategoryMusic categoryMusic = GlobalValue.listCategoryMusics
 					.get(getMainActivity().currentMusicType);
-			setHeaderTitle(categoryMusic.getTitle());
+//			setHeaderTitle(categoryMusic.getTitle());
 			listSongs.clear();
 			if (categoryMusic.getListSongs().size() == 0) {
 				getData(true);
@@ -311,15 +311,15 @@ public class ListSongsFragment extends BaseFragment {
 
 			listSongs.addAll(categoryMusic.getListSongs());
 			songAdapter.notifyDataSetChanged();
-			setButtonBack(view);
+//			setButtonBack(view);
 			break;
 
-		case MainActivity.PLAYLIST:
-			setHeaderTitle(getMainActivity().currentPlaylist.getName());
+		case SongListActivity.PLAYLIST:
+//			setHeaderTitle(getMainActivity().currentPlaylist.getName());
 			listSongs.clear();
 			listSongs.addAll(getMainActivity().currentPlaylist.getListSongs());
 			songAdapter.notifyDataSetChanged();
-			setButtonBack(view);
+//			setButtonBack(view);
 			break;
 		}
 	}

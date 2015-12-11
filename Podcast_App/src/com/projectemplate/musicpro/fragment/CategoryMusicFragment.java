@@ -1,7 +1,7 @@
 package com.projectemplate.musicpro.fragment;
 
 import com.projectemplate.musicpro.BaseFragment;
-import com.projectemplate.musicpro.activity.MainActivity;
+import com.projectemplate.musicpro.activity.SongListActivity;
 import com.projectemplate.musicpro.adapter.CategoryMusicAdapter;
 import com.projectemplate.musicpro.config.GlobalValue;
 import com.projectemplate.musicpro.slidingmenu.SlidingMenu;
@@ -22,8 +22,8 @@ public class CategoryMusicFragment extends BaseFragment {
 	@Override
 	public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 		View view = inflater.inflate(R.layout.fragment_category_music, container, false);
-		initUIBase(view);
-		setButtonMenu(view);
+//		initUIBase(view);
+//		setButtonMenu(view);
 		return view;
 	}
 
@@ -40,7 +40,7 @@ public class CategoryMusicFragment extends BaseFragment {
 	@Override
 	protected void initUIBase(View view) {
 		super.initUIBase(view);
-		setHeaderTitle(R.string.categoryMusic);
+//		setHeaderTitle(R.string.categoryMusic);
 		grvCategoryMusic = (GridView) view.findViewById(R.id.grvCategoryMusic);
 		if (GlobalValue.listCategoryMusics!=null&&GlobalValue.listCategoryMusics.size()>0) {
 			
@@ -51,7 +51,7 @@ public class CategoryMusicFragment extends BaseFragment {
 			@Override
 			public void onItemClick(AdapterView<?> av, View v, int position, long l) {
 				getMainActivity().currentMusicType = position;
-				getMainActivity().gotoFragment(MainActivity.LIST_SONG_FRAGMENT);
+				getMainActivity().gotoFragment(SongListActivity.LIST_SONG_FRAGMENT);
 			}
 		});
 	}

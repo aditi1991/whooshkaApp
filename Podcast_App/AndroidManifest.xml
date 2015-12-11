@@ -93,7 +93,7 @@
         
       
         <activity
-            android:name="com.projectemplate.musicpro.activity.MainActivity"
+            android:name="com.projectemplate.musicpro.activity.SongListActivity"  android:theme="@style/AppTheme" 
             android:launchMode="singleTop" />
         <activity
             android:name="com.projectemplate.musicpro.activity.DownloadUpdateActivity"

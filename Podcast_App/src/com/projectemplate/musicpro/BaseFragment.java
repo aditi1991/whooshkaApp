@@ -1,6 +1,6 @@
 package com.projectemplate.musicpro;
 
-import com.projectemplate.musicpro.activity.MainActivity;
+import com.projectemplate.musicpro.activity.SongListActivity;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -16,45 +16,45 @@ public class BaseFragment extends Fragment {
 	private TextView lblHeader;
 
 	protected void initUIBase(View view) {
-		lblHeader = (TextView) view.findViewById(R.id.lblHeader);
-		view.findViewById(R.id.btnMenu).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-
-			}
-		});
+//		lblHeader = (TextView) view.findViewById(R.id.lblHeader);
+//		view.findViewById(R.id.btnMenu).setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//
+//			}
+//		});
 	}
+//
+//	protected void setButtonBack(View view) {
+//		view.findViewById(R.id.btnMenu).setBackgroundResource(R.drawable.btn_back);
+//		view.findViewById(R.id.btnMenu).setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				getActivity().onBackPressed();
+//			}
+//		});
+//	}
+//
+//	protected void setButtonMenu(View view) {
+//		view.findViewById(R.id.btnMenu).setBackgroundResource(R.drawable.btn_menu);
+//		view.findViewById(R.id.btnMenu).setOnClickListener(new OnClickListener() {
+//			@Override
+//			public void onClick(View v) {
+//				getMainActivity().menu.showMenu();
+//			}
+//		});
+//	}
 
-	protected void setButtonBack(View view) {
-		view.findViewById(R.id.btnMenu).setBackgroundResource(R.drawable.btn_back);
-		view.findViewById(R.id.btnMenu).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				getActivity().onBackPressed();
-			}
-		});
-	}
+//	protected void setHeaderTitle(String header) {
+//		lblHeader.setText(header);
+//	}
+//
+//	protected void setHeaderTitle(int header) {
+//		lblHeader.setText(header);
+//	}
 
-	protected void setButtonMenu(View view) {
-		view.findViewById(R.id.btnMenu).setBackgroundResource(R.drawable.btn_menu);
-		view.findViewById(R.id.btnMenu).setOnClickListener(new OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				getMainActivity().menu.showMenu();
-			}
-		});
-	}
-
-	protected void setHeaderTitle(String header) {
-		lblHeader.setText(header);
-	}
-
-	protected void setHeaderTitle(int header) {
-		lblHeader.setText(header);
-	}
-
-	public MainActivity getMainActivity() {
-		return (MainActivity) getActivity();
+	public SongListActivity getMainActivity() {
+		return (SongListActivity) getActivity();
 	}
 
 	public void showDialogNoNetwork() {

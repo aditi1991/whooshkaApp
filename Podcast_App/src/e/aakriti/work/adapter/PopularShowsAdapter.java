@@ -2,22 +2,18 @@ package e.aakriti.work.adapter;
 
 import java.util.List;
 
+import com.projectemplate.musicpro.activity.SongListActivity;
+
 import android.content.Context;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 import e.aakriti.work.imageloader.ImageLoader;
-import e.aakriti.work.objects.Categories;
 import e.aakriti.work.objects.PopularShows;
 import e.aakriti.work.podcast_app.MainActivity;
 import e.aakriti.work.podcast_app.R;
@@ -89,7 +85,8 @@ public class PopularShowsAdapter extends BaseAdapter {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent i = new Intent(context, com.projectemplate.musicpro.activity.MainActivity.class);
+				Intent i = new Intent(context, SongListActivity.class);
+				i.putExtra("selected_song", gridValues.get(position));
 				context.startActivity(i);
 
 			}

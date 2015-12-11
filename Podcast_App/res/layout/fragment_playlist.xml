@@ -3,7 +3,6 @@
     style="@style/Layout.FillWidthHeight.Vertical"
     android:background="@drawable/bg_app" >
 
-    <include layout="@layout/layout_header" />
 
     <com.projectemplate.musicpro.widget.AutoBgLinearLayout
         android:id="@+id/layoutCreatNewPlaylist"

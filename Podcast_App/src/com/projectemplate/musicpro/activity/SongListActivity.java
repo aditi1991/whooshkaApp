@@ -3,14 +3,15 @@ package com.projectemplate.musicpro.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.android.gms.ads.AdListener;
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdSize;
-import com.google.android.gms.ads.AdView;
-import com.google.android.gms.ads.InterstitialAd;
 import com.projectemplate.musicpro.config.GlobalValue;
 import com.projectemplate.musicpro.database.DatabaseUtility;
+import com.projectemplate.musicpro.fragment.AboutFragment;
+import com.projectemplate.musicpro.fragment.CategoryMusicFragment;
+import com.projectemplate.musicpro.fragment.ListSongsFragment;
 import com.projectemplate.musicpro.fragment.PlayerFragment;
+import com.projectemplate.musicpro.fragment.PlaylistFragment;
+import com.projectemplate.musicpro.fragment.SearchFragment;
+import com.projectemplate.musicpro.fragment.SettingsFragment;
 import com.projectemplate.musicpro.modelmanager.ModelManager;
 import com.projectemplate.musicpro.modelmanager.ModelManagerListener;
 import com.projectemplate.musicpro.object.CategoryMusic;
@@ -38,19 +39,19 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.IBinder;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import e.aakriti.work.objects.PopularShows;
 import e.aakriti.work.podcast_app.R;
 
-public class MainActivity extends AppCompatActivity implements OnClickListener {
+public class SongListActivity extends AppCompatActivity implements OnClickListener {
 	public static final int TOP_CHART = 0;
 	public static final int NOMINATIONS = 1;
 	public static final int CATEGORY_MUSIC = 2;
@@ -88,11 +89,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 	private TextView lblTopChart, lblNominations, lblCategoryMusic, lblPlaylist, lblSearch, lblGoodApp, lblAbout,
 			lblExitApp;
 
-	private LinearLayout llAdview;
-	private InterstitialAd interstitialAd;
-	private AdView adView;
-	AdRequest interstitialRequest;
-	AdRequest adRequest;
+	// private LinearLayout llAdview;
+	// private InterstitialAd interstitialAd;
+	// private AdView adView;
+	// AdRequest interstitialRequest;
+	// AdRequest adRequest;
 
 	// private static final String BANNER_AD_ID =
 	// "ca-app-pub-9687197024195006/5976545579";
@@ -137,8 +138,9 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 				public void onChangeSong(int indexSong) {
 					((PlayerFragment) arrayFragments[PLAYER_FRAGMENT]).changeSong(indexSong);
 					if (GlobalValue.getCurrentSong() != null) {
-					lblSongNameFooter.setText(GlobalValue.getCurrentSong().getName());
-					lblArtistFooter.setText(GlobalValue.getCurrentSong().getArtist());}
+						lblSongNameFooter.setText(GlobalValue.getCurrentSong().getName());
+						lblArtistFooter.setText(GlobalValue.getCurrentSong().getArtist());
+					}
 				}
 			});
 		}
@@ -147,6 +149,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 		public void onServiceDisconnected(ComponentName name) {
 		}
 	};
+	private PopularShows selected_song_vo;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -154,8 +157,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 		initList();
 		databaseUtility = new DatabaseUtility(this);
 		setContentView(R.layout.activity_main);
-		LanguageUtil.setLocale(new MySharedPreferences(this).getLanguage(),
-				this);
+		LanguageUtil.setLocale(new MySharedPreferences(this).getLanguage(), this);
+		if (getIntent() != null) {
+			selected_song_vo = (PopularShows) getIntent().getSerializableExtra("selected_song");
+		}
 
 		GlobalValue.constructor(this);
 		modelManager = new ModelManager(this);
@@ -170,7 +175,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 				getListMusicType();
 			}
 		});
-		
+
 		initService();
 		initMenu();
 		initUI();
@@ -178,13 +183,12 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 		initFragment();
 		try {
 			getIntent().getExtras().get("notification");
-			toMusicPlayer = MainActivity.FROM_NOTICATION;
+			toMusicPlayer = SongListActivity.FROM_NOTICATION;
 			showFragment(PLAYER_FRAGMENT);
 		} catch (Exception e) {
 			setSelect(TOP_CHART);
 		}
 
-		
 	}
 
 	private void getListMusicType() {
@@ -192,23 +196,31 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 			@SuppressWarnings("unchecked")
 			@Override
 			public void onSuccess(Object object) {
-				GlobalValue.listCategoryMusics
-						.addAll((List<CategoryMusic>) object);
-				
+				GlobalValue.listCategoryMusics.addAll((List<CategoryMusic>) object);
+
 			}
 
 			@Override
 			public void onError() {
-				Toast.makeText(
-						MainActivity.this,
+				Toast.makeText(SongListActivity.this,
 						"There is an error with the internet connection. Music data cannot be loaded.",
 						Toast.LENGTH_LONG).show();
-				
+
 			}
 		});
 	}
 
-	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		int id = item.getItemId();
+
+		if (id == android.R.id.home) {
+			onBackPressed();
+			return true;
+		}
+
+		return super.onOptionsItemSelected(item);
+	}
 
 	@Override
 	public void onPause() {
@@ -328,17 +340,20 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 	//
 	// }
 
-	public void displayInterstitialAd() {
-		if (interstitialAd.isLoaded()) {
-			interstitialAd.show();
-		} else {
-			interstitialAd.loadAd(interstitialRequest);
-			Log.d("INTERSTITIAL_AD", "Interstitial ad was not ready to be shown.");
-		}
-	}
+	// public void displayInterstitialAd() {
+	// if (interstitialAd.isLoaded()) {
+	// interstitialAd.show();
+	// } else {
+	// interstitialAd.loadAd(interstitialRequest);
+	// Log.d("INTERSTITIAL_AD", "Interstitial ad was not ready to be shown.");
+	// }
+	// }
 
 	private void initFragment() {
 		fm = getSupportFragmentManager();
+		arrayFragments = new Fragment[7];
+		
+	
 		arrayFragments = new Fragment[7];
 		arrayFragments[LIST_SONG_FRAGMENT] = fm.findFragmentById(R.id.fragmentListSongs);
 		arrayFragments[CATEGORY_MUSIC_FRAGMENT] = fm.findFragmentById(R.id.fragmentCategoryMusic);
@@ -607,7 +622,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 			break;
 
 		case R.id.lblExitApp:
-			displayInterstitialAd();
+			// displayInterstitialAd();
 			onClickExitApp();
 			break;
 		}
@@ -686,19 +701,21 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 				} else if (GlobalValue.currentMenu == PLAYLIST) {
 					backFragment(PLAYLIST_FRAGMENT);
 				} else {
-					quitApp();
+					// quitApp();
+					super.onBackPressed();
 				}
 				break;
 
 			default:
-				quitApp();
+				// quitApp();
+				super.onBackPressed();
 				break;
 			}
 		}
 	}
 
 	private void quitApp() {
-		displayInterstitialAd();
+		// displayInterstitialAd();
 		if (doubleBackToExitPressedOnce) {
 			finish();
 			stopService(intentService);

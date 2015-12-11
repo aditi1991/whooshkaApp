@@ -3,7 +3,6 @@
     android:id="@+id/layoutSong"
     style="@style/Layout.FillWidth.Vertical" >
 
-    <include layout="@layout/layout_header" />
 
     <GridView
         android:id="@+id/grvCategoryMusic"
