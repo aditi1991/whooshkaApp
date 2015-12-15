@@ -38,6 +38,8 @@ public class getAllExploreShowsWS extends AsyncTask<Void, Void, String> {
 	//ArrayList<Categories> allCategories;
 	Explore_showsAdapter adapter;
 	Utility utility;
+	String listner_id = "";
+	SharedData sharedData;
 	
 	public getAllExploreShowsWS(GridView gridView_shows,Context c,Explore_showsAdapter showsadapter) {
 		// TODO Auto-generated constructor stub
@@ -46,6 +48,8 @@ public class getAllExploreShowsWS extends AsyncTask<Void, Void, String> {
 		//this.allCategories = (ArrayList<Categories>) MainActivity.allCategories;
 		this.adapter = showsadapter;
 		utility = new Utility(context);
+		sharedData = new SharedData(context);
+		listner_id = sharedData.getString("ListnerId", "");
 	}
 	
 	
@@ -79,7 +83,7 @@ public class getAllExploreShowsWS extends AsyncTask<Void, Void, String> {
 					@Override
 					public void run() {
 						try {
-							String uri = RestApi.createURI(RestApi.GetAllExplore_episodes_WS)+"/type/show";
+							String uri = RestApi.createURI(RestApi.GetAllExplore_episodes_WS)+"/type/show"+"/user/"+listner_id;
 							//String uri = "http://www.whooshkaa.com/index.php?r=api/LoginDevice&user_name="
 								//	+ userName + "&password=" + passWord;
 							result = RestApi.getDataFromURLWithoutParam(uri);

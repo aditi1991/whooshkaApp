@@ -22,6 +22,7 @@ import e.aakriti.work.adapter.PopularShowsAdapter;
 import e.aakriti.work.objects.Categories;
 import e.aakriti.work.objects.FeaturedShows;
 import e.aakriti.work.objects.PopularShows;
+import e.aakriti.work.podcast_app.CategoryEpisodeActivity;
 import e.aakriti.work.podcast_app.MainActivity;
 
 public class getAllPopularWS extends AsyncTask<Void, Void, String> {
@@ -34,6 +35,8 @@ public class getAllPopularWS extends AsyncTask<Void, Void, String> {
 	//ArrayList<Categories> allCategories;
 	PopularShowsAdapter adapter;
 	Utility utility;
+	String listner_id = "";
+	SharedData sharedData;
 	
 	public getAllPopularWS(GridView gridViewq,Context c,PopularShowsAdapter adapter) {
 		// TODO Auto-generated constructor stub
@@ -42,6 +45,8 @@ public class getAllPopularWS extends AsyncTask<Void, Void, String> {
 		//this.allCategories = (ArrayList<Categories>) MainActivity.allCategories;
 		this.adapter = adapter;
 		utility = new Utility(context);
+		sharedData = new SharedData(context);
+		listner_id = sharedData.getString("ListnerId", "");
 	}
 	
 	
@@ -75,7 +80,7 @@ public class getAllPopularWS extends AsyncTask<Void, Void, String> {
 					@Override
 					public void run() {
 						try {
-							String uri = RestApi.createURI(RestApi.GetAllPopularShows_WS);
+							String uri = RestApi.createURI(RestApi.GetAllPopularShows_WS+"/user/"+listner_id);
 							//String uri = "http://www.whooshkaa.com/index.php?r=api/LoginDevice&user_name="
 								//	+ userName + "&password=" + passWord;
 							result = RestApi.getDataFromURLWithoutParam(uri);

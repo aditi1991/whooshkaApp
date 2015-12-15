@@ -1,13 +1,18 @@
 package e.aakriti.work.objects;
 
+import java.io.Serializable;
 import java.util.HashMap;
 
 import org.json.JSONObject;
 
 import android.util.Log;
 
-public class PopularShows {
+public class PopularShows implements Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	public static final String ID = "id";
 	public static final String CATEGORYID = "category_id";
     public static final String TITLE = "title";

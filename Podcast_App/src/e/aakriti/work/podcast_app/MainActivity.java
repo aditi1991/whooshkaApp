@@ -5,19 +5,21 @@ import java.util.List;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -62,7 +64,7 @@ import e.aakriti.work.objects.FollowingShows;
 import e.aakriti.work.objects.PopularShows;
 import e.aakriti.work.objects.RecentShows;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends FragmentActivity {
 
 	// create object of FragmentPagerAdapter
 	SectionsPagerAdapter mSectionsPagerAdapter;
@@ -103,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
+		setContentView(R.layout.activity_main_);
 		getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_HIDDEN);
 
 		// Create the adapter that will return a fragment for each of the five
@@ -209,6 +211,16 @@ public class MainActivity extends AppCompatActivity {
         mDrawerList.setAdapter(nav_adapter);
         supportInvalidateOptionsMenu();
 
+        mDrawerList.setOnItemClickListener(new OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+        
+        
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
         mViewPager.setOffscreenPageLimit(1);
@@ -460,7 +472,13 @@ public class MainActivity extends AppCompatActivity {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 					// TODO Auto-generated method stub
-					Toast.makeText(context, allCategories.get(position).getFull_name()+" .", Toast.LENGTH_LONG).show();
+					//Toast.makeText(context, allCategories.get(position).getFull_name()+" .", Toast.LENGTH_LONG).show();
+					
+					Intent intent = new Intent(context,CategoryEpisodeActivity.class);
+					intent.putExtra("Category_id", allCategories.get(position).getId());
+					intent.putExtra("Category_name", allCategories.get(position).getFull_name());
+					startActivity(intent);
+					//getActivity().finish();
 				}
 			});
 			return view;
@@ -666,4 +684,14 @@ public class MainActivity extends AppCompatActivity {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
+	@Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        if (mDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+}
+	
 }

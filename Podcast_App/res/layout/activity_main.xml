@@ -1,124 +1,115 @@
-<?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    style="@style/Layout.FillWidthHeight" >
+    
+  
+     <fragment
+        android:id="@+id/fragmentListSongs"
+        android:name="com.projectemplate.musicpro.fragment.ListSongsFragment"
+        style="@style/Layout.FillWidthHeight" />
 
-    <android.support.v4.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/drawer_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@drawable/bg11">
-        
-    <RelativeLayout 
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-        
-    
-  	<include layout="@layout/header"
-  	    android:id="@+id/layout_header"
-  	    android:layout_width="fill_parent"
-  	    android:layout_height="?android:attr/actionBarSize"/>
-    
-    <android.support.v4.view.ViewPager
-        android:layout_below="@+id/layout_header"
-        android:id="@+id/pager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".MainActivity" 
-        android:background="@drawable/bg11">
+    <fragment
+        android:id="@+id/fragmentCategoryMusic"
+        android:name="com.projectemplate.musicpro.fragment.CategoryMusicFragment"
+        style="@style/Layout.FillWidthHeight" />
 
-        <!--
-    This title strip will display the currently visible page title, as well as the page
-    titles for adjacent pages.
-        -->
+    <fragment
+        android:id="@+id/fragmentPlaylist"
+        android:name="com.projectemplate.musicpro.fragment.PlaylistFragment"
+        style="@style/Layout.FillWidthHeight" />
 
-        <android.support.v4.view.PagerTabStrip
-            
-            android:id="@+id/pager_title_strip"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="top"
-            android:background="@android:color/transparent"
-            android:paddingBottom="@dimen/lib_view_padding_bottom"
-            android:paddingTop="@dimen/lib_view_padding_bottom"
-            android:textColor="#ffffff" />
-    </android.support.v4.view.ViewPager>
-    
-    </RelativeLayout>
-    
+    <fragment
+        android:id="@+id/fragmentSearch"
+        android:name="com.projectemplate.musicpro.fragment.SearchFragment"
+        style="@style/Layout.FillWidthHeight" />
+
+    <fragment
+        android:id="@+id/fragmentSetting"
+        android:name="com.projectemplate.musicpro.fragment.SettingsFragment"
+        style="@style/Layout.FillWidthHeight" />
+
+    <fragment
+        android:id="@+id/fragmentAbout"
+        android:name="com.projectemplate.musicpro.fragment.AboutFragment"
+        style="@style/Layout.FillWidthHeight" />
+
+    <fragment
+        android:id="@+id/fragmentPlayer"
+        android:name="com.projectemplate.musicpro.fragment.PlayerFragment"
+        style="@style/Layout.FillWidthHeight" /> 
+
     <LinearLayout
-            android:id="@+id/linear_drawer"
-            android:layout_width="@dimen/menu_width"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@drawable/bg11"
-            
-            android:orientation="vertical">
-            <!--android:layout_marginTop="?attr/actionBarSize"-->
+        android:id="@+id/llBottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical" >
 
-            <!-- Your drawer content -->
-            <!-- The navigation drawer -->
+        <LinearLayout
+            android:id="@+id/layoutPlayerFooter"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_above="@+id/adView"
+            android:background="@drawable/bg_player_footer_"
+            android:gravity="center_vertical" >
 
-            <RelativeLayout
-                android:id="@+id/profileNormalFrame"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                android:background="@android:color/transparent"
-                android:clickable="true">
+            <ImageView
+                android:id="@+id/imgSongFooter"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_music_node_small" />
 
-                <e.aakriti.work.common.RoundedImageView
-                    android:id="@+id/googleProfileImageNormalFrame"
-                    android:layout_width="@dimen/lib_img_width"
-                    android:layout_height="@dimen/lib_img_width"
-                    android:layout_alignParentTop="true"
-                    android:layout_centerInParent="true"
-                    android:layout_marginTop="30dp"
-                    android:background="@drawable/profile_picture_border"
-                    android:contentDescription="@string/app_name"
-                    android:src="@drawable/ic_no_image" />
+            <LinearLayout
+                style="@style/Layout.Weight.Width"
+                android:orientation="vertical" >
 
-                <com.innovattic.font.FontTextView
-                    android:id="@+id/usernameNormalFrame"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/googleProfileImageNormalFrame"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="10dp"
+                <TextView
+                    android:id="@+id/lblSongNameFooter"
+                    style="@style/Text.Title.White"
+                    android:ellipsize="marquee"
+                    android:marqueeRepeatLimit="marquee_forever"
+                    android:text="@string/app_name" />
+
+                <TextView
+                    android:id="@+id/lblArtistFooter"
+                    style="@style/Text.Content.White"
                     android:ellipsize="marquee"
                     android:marqueeRepeatLimit="marquee_forever"
                     android:singleLine="true"
-                    android:text="Welcome"
-                    android:textColor="@android:color/white"
-                    android:textAppearance="?android:attr/textAppearanceLarge"
-                    android:textStyle="bold" />
+                    android:text="@string/app_name" />
+            </LinearLayout>
 
-                <LinearLayout 
-                    android:layout_width="fill_parent"
-                    android:layout_height="2dp"
-                    android:layout_below="@id/usernameNormalFrame"
-                    android:layout_marginLeft="3dp"
-                    android:layout_marginRight="3dp"/>
-            </RelativeLayout>
+            <com.projectemplate.musicpro.widget.AutoBgButton
+                android:id="@+id/btnPreviousFooter"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_btn_previous_small" />
 
-            <View
-                android:layout_width="fill_parent"
-                android:layout_height="0.5dp"
-                android:background="@android:color/white" />
+            <com.projectemplate.musicpro.widget.AutoBgButton
+                android:id="@+id/btnPlayFooter"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_btn_pause_small" />
 
-            <ListView
-                android:id="@+id/left_drawer"
-                android:layout_width="280dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:layout_marginTop="15dp"
-                android:choiceMode="singleChoice"
-                android:divider="@android:color/white"
-                android:dividerHeight="0dp"
-                android:scrollbars="vertical" />
+            <com.projectemplate.musicpro.widget.AutoBgButton
+                android:id="@+id/btnNextFooter"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:background="@drawable/bg_btn_next_small" />
         </LinearLayout>
-    
-    </android.support.v4.widget.DrawerLayout>
+
+        <!--
+             <LinearLayout
+            android:id="@+id/adView"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@android:color/white"
+            android:orientation="vertical" />
+        -->
+    </LinearLayout>
 
 </RelativeLayout>
