@@ -9,8 +9,10 @@ import org.json.JSONObject;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -23,14 +25,36 @@ import e.aakriti.work.common.RestApi;
 import e.aakriti.work.common.SharedData;
 import e.aakriti.work.common.Utility;
 
-public class LoginActivity extends Activity {
+import com.google.android.gms.auth.api.Auth;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignInResult;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.plus.Plus;
+import com.google.android.gms.plus.model.people.Person;
+import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.common.Scopes;
+import com.google.android.gms.auth.api.Auth;
 
-	Button submitBtn;
+public class LoginActivity extends Activity {
+	
+
+    
+    //User data collected from login with social
+    static String firstName = null;
+    static String lastName = null;
+    static String email = null;
+    static Bitmap userPicture = null;
+
+	/*Button submitBtn, 
 	TextView forgotPwd, backTxt;
 	ImageView fbLogin, gpLogin;
 	Utility utility;
 	String userName, passWord;
-	EditText emailEt, passwordEt;
+	EditText emailEt, passwordEt;*/
+	Button connectWithPhoneButton,connectWithFacebookButton,connectWithGooglePlusButton,
+	       connectWithLinkedInButton;
 	int flag_Fp=0;
 	SharedData shareData;
 
@@ -40,18 +64,25 @@ public class LoginActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.login);
 
-		utility = new Utility(LoginActivity.this);
+	/*	utility = new Utility(LoginActivity.this);
 		submitBtn = (Button) findViewById(R.id.submitBtn);
 		forgotPwd = (TextView) findViewById(R.id.forgetPwdTxt);
 		backTxt = (TextView) findViewById(R.id.backTxt);
 		fbLogin = (ImageView) findViewById(R.id.fbLoginBtn);
 		gpLogin = (ImageView) findViewById(R.id.gpLoginBtn);
 		emailEt = (EditText) findViewById(R.id.emailEt);
-		passwordEt = (EditText) findViewById(R.id.passwordEt);
+		passwordEt = (EditText) findViewById(R.id.passwordEt);*/
+		connectWithPhoneButton =(Button)findViewById(R.id.phoneConnectButton);
+		connectWithFacebookButton = (Button) findViewById(R.id.fbConnectButton);
+		connectWithGooglePlusButton = (Button)findViewById(R.id.googlePlusConnectButton);
+		connectWithLinkedInButton = (Button)findViewById(R.id.inConnectButton);
+		
+		
+		
 
 		shareData = new SharedData(LoginActivity.this);
 		
-		backTxt.setOnClickListener(new OnClickListener() {
+	/*	backTxt.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -61,16 +92,36 @@ public class LoginActivity extends Activity {
 				startActivity(intent);
 				finish();
 			}
-		});
-		submitBtn.setOnClickListener(new OnClickListener() {
-
+		});               
+	                         */
+	//********** EventHandler for Connect with Phone ***********	
+		connectWithPhoneButton.setOnClickListener(new View.OnClickListener() {
+			
 			@Override
 			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+//**********EventHandler for Connect With Facebook**********
+		
+		connectWithFacebookButton.setOnClickListener(new OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				//[FOR TEST-START]
+				Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+				//intent.putExtra("userName", user_name);
+				startActivity(intent);
+				finish();
+			    //[FOR TEST-END]	
+				
 				// TODO Auto-generated method stub
 				// Toast.makeText(LoginActivity.this, "Submit - Coming
 				// Soon...!", Toast.LENGTH_LONG).show();
 
-				if(flag_Fp == 1)
+/*		    	if(flag_Fp == 1)
 				{
 					// Forgot Password
 					userName = emailEt.getText().toString();
@@ -104,11 +155,35 @@ public class LoginActivity extends Activity {
 					}
 				}
 				
-				// }
+				// }                                                            */                                                                      
+			}
+		});        
+
+//**********EventHandler for Connect with Google Plus**********
+		
+		connectWithGooglePlusButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
+			}
+		});
+		
+//**********EventHandler for Connect With LinkedIn**********
+		
+		connectWithLinkedInButton.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				
 			}
 		});
 
-		forgotPwd.setOnClickListener(new OnClickListener() {
+// *************Due to change in customer requirement below section code is commit.***************
+		
+	/*	forgotPwd.setOnClickListener(new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
@@ -138,9 +213,9 @@ public class LoginActivity extends Activity {
 				Toast.makeText(LoginActivity.this, "Google Login - Coming Soon...!", Toast.LENGTH_LONG).show();
 			}
 		});
-	}
+	}                                                            */                                                                                     
 
-	public class loginWSCall extends AsyncTask<Void, Void, String> {
+/*	public class loginWSCall extends AsyncTask<Void, Void, String> {
 
 		private ProgressDialog mLoader;
 		private String result = null, errorMessage = "",user_name;
@@ -170,7 +245,7 @@ public class LoginActivity extends Activity {
 
 			}
 			super.onPostExecute(result);
-		}
+		}                                                                                                  
 
 		@Override
 		protected String doInBackground(Void... params) {
@@ -249,7 +324,7 @@ public class LoginActivity extends Activity {
 			}
 			return result;
 		}
-	}
+	}                                                                                              
 	
 	public class forgotPasswordWSCall extends AsyncTask<Void, Void, String> {
 
@@ -281,7 +356,7 @@ public class LoginActivity extends Activity {
 
 			}
 			super.onPostExecute(result);
-		}
+		}                                                                                                       
 
 		@Override
 		protected String doInBackground(Void... params) {
@@ -314,7 +389,7 @@ public class LoginActivity extends Activity {
 												Intent intent = new Intent(LoginActivity.this,MainActivity.class);
 												intent.putExtra("userName", user_name);
 												startActivity(intent);
-												*/
+												
 												errorMessage = objRes.optString("msg");
 												Toast.makeText(LoginActivity.this, ""+errorMessage, Toast.LENGTH_LONG)
 												.show();
@@ -365,8 +440,10 @@ public class LoginActivity extends Activity {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			return result;
-		}
-	}
+			return result;  
+		}  */                                                                                                                                                
+	} 
+	
+
 
 }
