@@ -4,9 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.TypedArray;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.app.Fragment;
@@ -19,7 +22,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
@@ -209,6 +211,7 @@ public class MainActivity extends FragmentActivity {
 
         nav_adapter = new NavDrawerListAdapter(MainActivity.this, navDrawerItems);
         mDrawerList.setAdapter(nav_adapter);
+        mDrawerList.setOnItemClickListener(new HandleNavigationDrawerItemClick());
         supportInvalidateOptionsMenu();
 
         mDrawerList.setOnItemClickListener(new OnItemClickListener() {
@@ -249,7 +252,7 @@ public class MainActivity extends FragmentActivity {
 				case 6:
 					
 					sharedData.clearAll();
-				    intent = new Intent(MainActivity.this, Landing_PagerActivity.class);
+				    intent = new Intent(MainActivity.this, LoginActivity.class);
 					intent.putExtra("from_Back", "0");
 					startActivity(intent);
 					finish();
@@ -262,7 +265,7 @@ public class MainActivity extends FragmentActivity {
 			}
 		});
         
-        
+
         mDrawerLayout.setDrawerListener(mDrawerToggle);
         mDrawerToggle.syncState();
         mViewPager.setOffscreenPageLimit(1);
@@ -514,13 +517,7 @@ public class MainActivity extends FragmentActivity {
 				@Override
 				public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 					// TODO Auto-generated method stub
-					//Toast.makeText(context, allCategories.get(position).getFull_name()+" .", Toast.LENGTH_LONG).show();
-					
-					Intent intent = new Intent(context,CategoryEpisodeActivity.class);
-					intent.putExtra("Category_id", allCategories.get(position).getId());
-					intent.putExtra("Category_name", allCategories.get(position).getFull_name());
-					startActivity(intent);
-					//getActivity().finish();
+					Toast.makeText(context, allCategories.get(position).getFull_name()+" .", Toast.LENGTH_LONG).show();
 				}
 			});
 			return view;
@@ -725,15 +722,73 @@ public class MainActivity extends FragmentActivity {
 			return view;
 		}
 	}
-
-	@SuppressWarnings("deprecation")
-	@Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-
-        if (mDrawerToggle.onOptionsItemSelected(item)) {
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-}
 	
+	//Handles the left drawer item
+	private class HandleNavigationDrawerItemClick implements OnItemClickListener {
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+			// TODO Auto-generated method stub
+			leftNavigationDrawerItemSelection(position);
+		}
+	}
+	private void leftNavigationDrawerItemSelection(int position){
+		
+		switch(position){
+		case 0: //Home
+			mDrawerLayout.closeDrawers();
+			mViewPager.setCurrentItem(1);
+			break;
+		case 1:  //Who to Follow
+			//
+			break;
+		case 2:  //PlayList
+			//
+			break;
+		case 3:  //Favourites
+			//
+			break;
+		case 4:  //Settings
+			//
+			break;
+		case 5: // Item click for feedback. This will open install email client  
+			Intent mailIntent=new Intent(Intent.ACTION_SEND);
+            mailIntent.setData(Uri.parse("mailto"));
+            String[] to= {"amarjite446@gmail.com"};
+            mailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+            mailIntent.putExtra(Intent.EXTRA_SUBJECT, "User feedback");
+            //mailIntent.putExtra(Intent.EXTRA_TEXT, "hi");
+            mailIntent.setType("message/rfc822");
+            startActivity(Intent.createChooser(mailIntent, "send mail")); 
+			break;
+		case 6:  //logout will go to login activity. 
+			
+			AlertDialog.Builder logoutAlert = new AlertDialog.Builder(this);
+			logoutAlert.setTitle("Are you sure you want to log out of your account?");
+			logoutAlert.setPositiveButton("Logout", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					Intent logoutIntent = new Intent(MainActivity.this, LoginActivity.class);
+					logoutIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+					startActivity(logoutIntent);
+					finish();			
+				}
+			});
+			logoutAlert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					dialog.cancel();
+				}
+			});
+			AlertDialog alert = logoutAlert.create();
+			alert.show();
+					
+			break;
+		}
+		
+	}
+
 }

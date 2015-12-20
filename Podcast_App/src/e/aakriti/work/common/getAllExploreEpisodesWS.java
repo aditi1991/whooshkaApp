@@ -36,8 +36,6 @@ public class getAllExploreEpisodesWS extends AsyncTask<Void, Void, String> {
 	//ArrayList<Categories> allCategories;
 	Explore_Episodesadapter adapter;
 	Utility utility;
-	String listner_id = "";
-	SharedData sharedData;
 	
 	public getAllExploreEpisodesWS(GridView gridView_episodes,Context c,Explore_Episodesadapter episodesadapter) {
 		// TODO Auto-generated constructor stub
@@ -46,8 +44,6 @@ public class getAllExploreEpisodesWS extends AsyncTask<Void, Void, String> {
 		//this.allCategories = (ArrayList<Categories>) MainActivity.allCategories;
 		this.adapter = episodesadapter;
 		utility = new Utility(context);
-		sharedData = new SharedData(context);
-		listner_id = sharedData.getString("ListnerId", "");
 	}
 	
 	
@@ -81,7 +77,7 @@ public class getAllExploreEpisodesWS extends AsyncTask<Void, Void, String> {
 					@Override
 					public void run() {
 						try {
-							String uri = RestApi.createURI(RestApi.GetAllExplore_episodes_WS)+"/type/episode"+"/user/"+listner_id;
+							String uri = RestApi.createURI(RestApi.GetAllExplore_episodes_WS)+"/type/episode";
 							//String uri = "http://www.whooshkaa.com/index.php?r=api/LoginDevice&user_name="
 								//	+ userName + "&password=" + passWord;
 							result = RestApi.getDataFromURLWithoutParam(uri);

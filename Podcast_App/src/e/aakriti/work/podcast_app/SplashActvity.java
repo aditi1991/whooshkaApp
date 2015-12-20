@@ -32,10 +32,10 @@ public class SplashActvity extends Activity implements OnChronometerTickListener
 	}
 	public void moveToNextScreen()
 	{
-		Intent intent = new Intent(SplashActvity.this,Landing_PagerActivity.class);
+		Intent intent = new Intent(SplashActvity.this,LoginActivity.class);
 		startActivity(intent);
-		overridePendingTransition(R.anim.slide_in_right,
-				R.anim.slide_out_right);
+		//overridePendingTransition(R.anim.slide_in_right,
+			//	R.anim.slide_out_right);
 		finish();
 	}
 
