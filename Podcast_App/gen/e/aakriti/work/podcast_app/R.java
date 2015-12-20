@@ -2734,7 +2734,7 @@ containing a value of this type.
         public static final int action_mode_bar=0x7f0a0053;
         public static final int action_mode_bar_stub=0x7f0a0052;
         public static final int action_mode_close_button=0x7f0a0038;
-        public static final int action_settings=0x7f0a00f6;
+        public static final int action_settings=0x7f0a00f9;
         public static final int activity_chooser_view_content=0x7f0a0039;
         public static final int adView=0x7f0a006e;
         public static final int alertTitle=0x7f0a0045;
@@ -2759,8 +2759,9 @@ containing a value of this type.
         public static final int category=0x7f0a00f2;
         public static final int checkbox=0x7f0a004e;
         public static final int chkBox=0x7f0a00b7;
-        public static final int chr=0x7f0a00f4;
+        public static final int chr=0x7f0a00f7;
         public static final int chronometer=0x7f0a00df;
+        public static final int cnfrmpswdEt=0x7f0a00f6;
         public static final int collapseActionView=0x7f0a0022;
         public static final int contentPanel=0x7f0a0046;
         public static final int custom=0x7f0a004c;
@@ -2870,11 +2871,13 @@ containing a value of this type.
         public static final int middle=0x7f0a0028;
         public static final int multiply=0x7f0a001c;
         public static final int never=0x7f0a0024;
+        public static final int newpswdEt=0x7f0a00f5;
         public static final int no_records_rel=0x7f0a00d6;
         public static final int no_records_txt=0x7f0a00d7;
         public static final int none=0x7f0a000f;
         public static final int normal=0x7f0a0010;
         public static final int ok_btn=0x7f0a00ef;
+        public static final int oldpswdEt=0x7f0a00f4;
         public static final int orTxt=0x7f0a00e5;
         public static final int pager=0x7f0a0077;
         public static final int pager_title_strip=0x7f0a0078;
@@ -2928,7 +2931,7 @@ containing a value of this type.
         public static final int showTitle=0x7f0a001a;
         public static final int skip_btn=0x7f0a00ee;
         public static final int spacer=0x7f0a0041;
-        public static final int splashImg=0x7f0a00f5;
+        public static final int splashImg=0x7f0a00f8;
         public static final int split_action_bar=0x7f0a0004;
         public static final int src_atop=0x7f0a001e;
         public static final int src_in=0x7f0a001f;
@@ -3083,8 +3086,9 @@ containing a value of this type.
         public static final int select_dialog_item_material=0x7f03004a;
         public static final int select_dialog_multichoice_material=0x7f03004b;
         public static final int select_dialog_singlechoice_material=0x7f03004c;
-        public static final int splash=0x7f03004d;
-        public static final int support_simple_spinner_dropdown_item=0x7f03004e;
+        public static final int settings=0x7f03004d;
+        public static final int splash=0x7f03004e;
+        public static final int support_simple_spinner_dropdown_item=0x7f03004f;
     }
     public static final class menu {
         public static final int main=0x7f0d0000;

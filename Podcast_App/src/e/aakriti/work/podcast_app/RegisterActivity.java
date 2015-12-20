@@ -165,7 +165,12 @@ public class RegisterActivity extends Activity{
 								//String uri = "http://www.whooshkaa.com/index.php?r=api/LoginDevice&user_name="
 									//	+ userName + "&password=" + passWord;
 								result = RestApi.getDataFromURLWithoutParam(uri);
-
+								/*runOnUiThread(new Runnable() {
+									public void run() {
+										Toast.makeText(RegisterActivity.this, "reg"+result, Toast.LENGTH_LONG).show();
+										
+									}
+								});*/
 								if (Utility.isNotNull(result)) {
 									final JSONObject objRes = new JSONObject(result);
 									errorCode = Integer.parseInt(objRes.optString("response"));

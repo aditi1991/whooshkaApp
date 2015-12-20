@@ -216,7 +216,49 @@ public class MainActivity extends FragmentActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 				// TODO Auto-generated method stub
+				switch (position) {
+				//home
+				case 0:
+					
+					break;
+				//who to follow
+				case 1:
+					
+					break;
+					//playlist
+				case 2:
+					
+					break;
+					//favourites
+				case 3:
+					
+					break;
+					//settings
+				case 4:
+					
+					Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+					startActivity(intent);
+					//finish();
+					
+					break;
+					//feedback
+				case 5:
+					
+					break;	
+					//logout
+				case 6:
+					
+					sharedData.clearAll();
+				    intent = new Intent(MainActivity.this, Landing_PagerActivity.class);
+					intent.putExtra("from_Back", "0");
+					startActivity(intent);
+					finish();
+					
+					break;
 				
+				default:
+					break;
+				}
 			}
 		});
         
